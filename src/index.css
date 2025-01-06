@@ -61,8 +61,61 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     height: 100%;
+
+    .app-start-game, .app-lose-game {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      top: 0;
+      height: 100%;
+      color: white;
+      text-transform: uppercase;
+      background-color: rgba(0, 0, 0, 0.705);
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      button {
+        border: 2px solid white;
+        color: white;
+        border-radius: 10px;
+        background-color: transparent;
+        font-size: var(--font-size-medium);
+        font-weight: var(--font-weight-600);
+        text-transform: uppercase;
+        padding: .5rem 1rem;
+        cursor: pointer;
+      }
+    }
+
+    .app-lose-game {
+      color: var(--Primary-Rock-Gradient-1);
+    }
+
+    .app-life-hs-container {
+      position: absolute;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      right: 0;
+      top: 0;
+      margin: 1rem;
+      padding: .5rem;
+      border: 2px solid white;
+      border-radius: 10px;
+
+      span {
+        font-size: var(--font-size-large);
+        font-weight: 400;
+      }
+    }
 
     .app-score-container {
       display: flex;
@@ -140,7 +193,6 @@ body {
 
       .shadow {
         position: absolute;
-        z-index: 99;
         border-radius: 360px;
         width: var(--choice-size);
         height: var(--choice-size);
@@ -253,6 +305,7 @@ body {
       background-color: white;
       border-radius: 10px;
       padding: 1.5rem;
+      width: min(100%, max(25rem));
 
       .rules-title-close-container {
         display: flex;
@@ -264,6 +317,12 @@ body {
         h1 {
           font-size: var(--font-size-large);
         }
+
+      }
+      p {
+        font-size: var(--font-size-medium);
+        color: var(--Neutral-Dark-Text);
+        padding-bottom: 1rem;
       }
 
       button {
@@ -276,8 +335,9 @@ body {
         cursor: pointer;
       }
 
-      img {
+      .rules-image {
         margin-bottom: 1rem;
+        width: 100%;
       }
     }
 
@@ -290,6 +350,7 @@ body {
       text-align: center;
       height: max(20rem);
       overflow: hidden;
+      width: min(100%, max(30rem));
 
       p {
         color: var(--Neutral-Dark-Text);
@@ -333,6 +394,7 @@ body {
           justify-content: space-between;
           color: var(--Neutral-Dark-Text);
           text-transform: capitalize;
+          align-items: center;
           padding: .5rem;
           border-bottom: 1px solid var(--Neutral-Header-Outline);
 

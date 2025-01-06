@@ -11,6 +11,8 @@ export interface history {
   result: "win" | "lose" | "draw"
 }
 
+type TPlayerWonOrLose = null | "win" | "lose";
+
 export type TChoice = 'rock' | 'paper' | 'scissor' | 'lizard' | 'spock';
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
   const [history, setHistory] = useState<history[]>([])
   const [rulesOpen, setRulesOpen] = useState(false)
   const [historyOpen, setHistoryOpen] = useState(false)
+  const [isLoseOrWin, setIsLoseOrWin] = useState<TPlayerWonOrLose>(null)
+  const [startGame, setStartGame] = useState(false)
+  const [life, setLife] = useState(3)
+  const [highScore, setHighScore] = useState(0)
 
   const RULES: Record<TChoice, TChoice[]> = {
     rock: ['scissor', 'lizard'],
@@ -53,6 +59,10 @@ function App() {
   function determineWinner (playerChoice: TChoice, computerChoice: TChoice) {
  
     const beatenChoices = RULES[playerChoice];
+
+    if (life === 0) {
+      setIsLoseOrWin("lose")
+    }
    
     if (beatenChoices.includes(computerChoice)) {
       setResult('win')
@@ -63,7 +73,8 @@ function App() {
       record(playerChoice, computerChoice, "draw")
     } else {
       setResult('lose')
-      playerPoints!== 0? setPlayerPoints(playerPoints - 1) : setPlayerPoints(0)
+      // playerPoints!== 0? setPlayerPoints(playerPoints - 1) : setPlayerPoints(0)
+      setLife(life - 1)
       record(playerChoice, computerChoice, "lose")
     }
   };
@@ -71,11 +82,21 @@ function App() {
   const playGame = (choice: TChoice) => {
     
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-   
+
     setPlayerChoice(choice);
     setComputerChoice(computerChoice);
     determineWinner(choice, computerChoice)
   };
+
+  function startNewGame() {
+    if (playerPoints > highScore) {
+      setHighScore(playerPoints)
+    }
+    setLife(l => l += 3)
+    setNextRound(!nextRound); 
+    setPlayerChoice(null);
+    setPlayerPoints(0)
+  }
 
   return (
     <div className='app-main-container'>
@@ -93,12 +114,29 @@ function App() {
       </div>
       {playerChoice === null ? <Choice playGame={playGame} /> :
         <Play playerChoice={playerChoice} computerChoice={computerChoice!} nextRound={nextRound} setNextRound={setNextRound} result={result} setPlayerChoice={setPlayerChoice} />}
+
         <div className='app-history-rules-container'>
           <button onClick={toggleHistory}>history</button>
           <button onClick={toggleRules}>rules</button>
         </div>
+
           {historyOpen && <MatchHistory toggleHistory={toggleHistory} history={history} />}
           {rulesOpen && <Rules toggleRules={toggleRules}/>}
+
+        {(!startGame) && <div className='app-start-game'>
+          {isLoseOrWin === null ? <h1>start game</h1> : <h1>{isLoseOrWin === "win" ? "you win" : "game over"}</h1>}
+          <button onClick={() => setStartGame(prev => !prev)}>{startGame ? "play again" : "start game"}</button>
+        </div>}
+
+        {life === 0 && <div className='app-lose-game'>
+          <h1>game over</h1>
+          <button onClick={startNewGame}>play again</button>
+        </div>}
+
+        <div className='app-life-hs-container'>
+          <span>Life: {life}</span>
+          <span>High Score: {highScore}</span>
+        </div>
     </div>
   )
 }
