@@ -34,7 +34,7 @@ function Play({ playerChoice, computerChoice, nextRound, setNextRound, result, s
   }
 
   return (
-    <div className="play-main-container">
+    <div className="play-main-container"> 
       <div className="play-player-container">
         <h1>You Picked</h1>
         <div className={`play-player-picked-${playerChoice!}`}>
