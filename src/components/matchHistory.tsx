@@ -16,7 +16,7 @@ function MatchHistory({ history, toggleHistory }: MatchHistoryProps) {
       </div>
       {history.length !== 0 ? <ul>
         {history.map((h, i) => {
-          return <li key={i}><span className="match-history-result">{h.result}</span><p>You {h.player}<br /><strong>VS</strong><br />Computer {h.computer}</p><span className="match-history-date">{date.toLocaleDateString()}</span></li>
+          return <li key={i}><span className="match-history-result">{h.result}</span><p>You {h.player}<strong>VS</strong>Computer {h.computer}</p><span className="match-history-date">{date.toLocaleDateString()}</span></li>
         })}
       </ul> : <p>No Match History</p>}
 
