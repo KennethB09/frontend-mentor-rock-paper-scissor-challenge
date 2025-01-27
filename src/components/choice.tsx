@@ -14,18 +14,18 @@ function Choice({ playGame }: ChoiceProps) {
     return (
         <div className="choice-main-container">
             <div className="choice-pentagon-container">
-                <img className="choice-pentagon" src={line} />
+                <img className="choice-pentagon" src={line}/>
             </div>
             <div className="choice-scissor-container">
-                <button className="choice-scissor-btn" onClick={() => playGame('scissor')}><img src={scissor} alt="scissor" /><div className="shadow"></div></button>
+                <button className="choice-scissor-btn" onClick={() => playGame('scissor')}><img src={scissor} alt="scissor"/></button>
             </div>
             <div className="choice-spock-paper-container">
-                <button className="choice-spock-btn" onClick={() => playGame('spock')}><img src={spock} alt="spock" /><div className="shadow"></div></button>
-                <button className="choice-paper-btn" onClick={() => playGame('paper')}><img src={paper} alt="paper" /><div className="shadow"></div></button>
+                <button className="choice-spock-btn" onClick={() => playGame('spock')}><img src={spock} alt="spock"/></button>
+                <button className="choice-paper-btn" onClick={() => playGame('paper')}><img src={paper} alt="paper"/></button>
             </div>
             <div className="choice-rock-lizard-container">
-                <button className="choice-lizard-btn" onClick={() => playGame('lizard')}><img src={lizard} alt="lizard" /><div className="shadow"></div></button>
-                <button className="choice-rock-btn" onClick={() => playGame('rock')}><img src={rock} alt="rock" /><div className="shadow"></div></button>
+                <button className="choice-lizard-btn" onClick={() => playGame('lizard')}><img src={lizard} alt="lizard"/></button>
+                <button className="choice-rock-btn" onClick={() => playGame('rock')}><img src={rock} alt="rock"/></button>
             </div>
         </div>
     )
